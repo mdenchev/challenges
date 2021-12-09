@@ -58,8 +58,15 @@ fn part2() -> Result<(), Box<dyn Error>> {
         let mut oxygen_generator_rating_candidates = reports.clone();
         let mut idx = 0;
         while oxygen_generator_rating_candidates.len() > 1 {
-            let num_ones: i32 = oxygen_generator_rating_candidates.iter().map(|c| c[idx]).sum();
-            let most_common = if num_ones * 2 >= oxygen_generator_rating_candidates.len() as i32 { 1 } else { 0 };
+            let num_ones: i32 = oxygen_generator_rating_candidates
+                .iter()
+                .map(|c| c[idx])
+                .sum();
+            let most_common = if num_ones * 2 >= oxygen_generator_rating_candidates.len() as i32 {
+                1
+            } else {
+                0
+            };
             let _ = oxygen_generator_rating_candidates
                 .drain_filter::<_>(|report| report[idx] != most_common)
                 .collect::<Vec<Vec<i32>>>();
@@ -80,7 +87,11 @@ fn part2() -> Result<(), Box<dyn Error>> {
         let mut idx = 0;
         while co2_scrubber_rating_candidates.len() > 1 {
             let num_ones: i32 = co2_scrubber_rating_candidates.iter().map(|c| c[idx]).sum();
-            let most_common = if num_ones * 2 >= co2_scrubber_rating_candidates.len() as i32 { 1 } else { 0 };
+            let most_common = if num_ones * 2 >= co2_scrubber_rating_candidates.len() as i32 {
+                1
+            } else {
+                0
+            };
             let _ = co2_scrubber_rating_candidates
                 .drain_filter::<_>(|report| report[idx] == most_common)
                 .collect::<Vec<Vec<i32>>>();
