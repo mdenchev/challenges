@@ -4,10 +4,11 @@ use std::error::Error;
 use challenges::read_lines;
 
 fn part1() -> Result<(), Box<dyn Error>> {
-    let mut lines = read_lines("./inputs/advent2021_p6")?;
-    let mut fish: Vec<i32> = lines
+    let inp = read_lines("./inputs/advent2021_p6")
+        .into_iter()
         .next()
-        .unwrap()?
+        .unwrap();
+    let mut fish: Vec<i32> = inp
         .split(',')
         .map(|num| num.parse::<i32>().unwrap())
         .collect();
@@ -27,10 +28,11 @@ fn part1() -> Result<(), Box<dyn Error>> {
 }
 
 fn part2_original() -> Result<(), Box<dyn Error>> {
-    let mut lines = read_lines("./inputs/advent2021_p6")?;
-    let mut fish: Vec<i32> = lines
+    let inp = read_lines("./inputs/advent2021_p6")
+        .into_iter()
         .next()
-        .unwrap()?
+        .unwrap();
+    let mut fish: Vec<i32> = inp
         .split(',')
         .map(|num| num.parse::<i32>().unwrap())
         .collect();
@@ -67,10 +69,11 @@ fn part2_original() -> Result<(), Box<dyn Error>> {
 }
 
 fn part2() -> Result<(), Box<dyn Error>> {
-    let mut lines = read_lines("./inputs/advent2021_p6")?;
-    let fish: Vec<usize> = lines
+    let inp = read_lines("./inputs/advent2021_p6")
+        .into_iter()
         .next()
-        .unwrap()?
+        .unwrap();
+    let fish: Vec<usize> = inp
         .split(',')
         .map(|num| num.parse::<usize>().unwrap())
         .collect();

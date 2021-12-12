@@ -5,15 +5,12 @@ use challenges::read_lines;
 
 fn part1() -> Result<(), Box<dyn Error>> {
     let mut bit_grid = Vec::<Vec<i32>>::new();
-    if let Ok(lines) = read_lines("./inputs/advent2021_p3") {
-        for line in lines {
-            let line = line?;
-            for (idx, ch) in line.chars().enumerate() {
-                if bit_grid.len() <= idx {
-                    bit_grid.push(vec![]);
-                }
-                bit_grid[idx].push(ch.to_digit(10).unwrap() as i32);
+    for line in read_lines("./inputs/advent2021_p3") {
+        for (idx, ch) in line.chars().enumerate() {
+            if bit_grid.len() <= idx {
+                bit_grid.push(vec![]);
             }
+            bit_grid[idx].push(ch.to_digit(10).unwrap() as i32);
         }
     }
     let report: Vec<i32> = bit_grid
@@ -43,15 +40,12 @@ fn part1() -> Result<(), Box<dyn Error>> {
 
 fn part2() -> Result<(), Box<dyn Error>> {
     let mut reports: Vec<Vec<i32>> = vec![];
-    if let Ok(lines) = read_lines("./inputs/advent2021_p3") {
-        for line in lines {
-            let line = line?;
-            reports.push(
-                line.chars()
-                    .map(|ch| ch.to_digit(10).unwrap() as i32)
-                    .collect(),
-            );
-        }
+    for line in read_lines("./inputs/advent2021_p3") {
+        reports.push(
+            line.chars()
+                .map(|ch| ch.to_digit(10).unwrap() as i32)
+                .collect(),
+        );
     }
 
     let oxygen_generator_rating = {

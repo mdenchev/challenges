@@ -51,18 +51,18 @@ impl BingoBoard {
 }
 
 fn part1() -> Result<(), Box<dyn Error>> {
-    let mut lines = read_lines("./inputs/advent2021_p4")?;
-    let first_line = lines.next().unwrap()?;
+    let mut lines = read_lines("./inputs/advent2021_p4").into_iter();
+    let first_line = lines.next().unwrap();
     let order: Vec<i32> = first_line
         .split(',')
         .map(|num| num.parse::<i32>().unwrap())
         .collect();
     let mut boards: Vec<BingoBoard> = vec![];
 
-    while let Some(Ok(_)) = lines.next() {
+    while let Some(_) = lines.next() {
         let mut board = BingoBoard::default();
         for _ in 0..5 {
-            if let Some(Ok(line)) = lines.next() {
+            if let Some(line) = lines.next() {
                 board.push(
                     line.split_whitespace()
                         .map(|num| (false, num.parse::<i32>().unwrap()))
@@ -90,18 +90,18 @@ fn part1() -> Result<(), Box<dyn Error>> {
 }
 
 fn part2() -> Result<(), Box<dyn Error>> {
-    let mut lines = read_lines("./inputs/advent2021_p4")?;
-    let first_line = lines.next().unwrap()?;
+    let mut lines = read_lines("./inputs/advent2021_p4").into_iter();
+    let first_line = lines.next().unwrap();
     let order: Vec<i32> = first_line
         .split(',')
         .map(|num| num.parse::<i32>().unwrap())
         .collect();
     let mut boards: Vec<BingoBoard> = vec![];
 
-    while let Some(Ok(_)) = lines.next() {
+    while let Some(_) = lines.next() {
         let mut board = BingoBoard::default();
         for _ in 0..5 {
-            if let Some(Ok(line)) = lines.next() {
+            if let Some(line) = lines.next() {
                 board.push(
                     line.split_whitespace()
                         .map(|num| (false, num.parse::<i32>().unwrap()))

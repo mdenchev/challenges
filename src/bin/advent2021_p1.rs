@@ -8,15 +8,12 @@ extern crate scan_fmt;
 fn part1() -> Result<(), Box<dyn Error>> {
     let mut previous: Option<i32> = None;
     let mut increases = 0;
-    if let Ok(lines) = read_lines("./inputs/advent2021_p1") {
-        for line in lines {
-            let line = &line?;
-            let val = Some(scan_fmt!(line, "{}", i32)?);
-            if previous.is_some() && val > previous {
-                increases += 1;
-            }
-            previous = val;
+    for line in read_lines("./inputs/advent2021_p1") {
+        let val = Some(scan_fmt!(&line, "{}", i32)?);
+        if previous.is_some() && val > previous {
+            increases += 1;
         }
+        previous = val;
     }
 
     dbg!(increases);
@@ -26,17 +23,14 @@ fn part1() -> Result<(), Box<dyn Error>> {
 fn part2() -> Result<(), Box<dyn Error>> {
     let mut vals = VecDeque::<i32>::new();
     let mut increases = 0;
-    if let Ok(lines) = read_lines("./inputs/advent2021_p1") {
-        for line in lines {
-            let line = &line?;
-            let new = scan_fmt!(line, "{}", i32)?;
-            vals.push_back(new);
-            if vals.len() == 4 {
-                if vals.range(..3).sum::<i32>() < vals.range(1..).sum() {
-                    increases += 1;
-                }
-                vals.pop_front();
+    for line in read_lines("./inputs/advent2021_p1") {
+        let new = scan_fmt!(&line, "{}", i32)?;
+        vals.push_back(new);
+        if vals.len() == 4 {
+            if vals.range(..3).sum::<i32>() < vals.range(1..).sum() {
+                increases += 1;
             }
+            vals.pop_front();
         }
     }
 
