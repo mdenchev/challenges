@@ -26,7 +26,7 @@ fn part1() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn part2() -> Result<(), Box<dyn Error>> {
+fn part2_original() -> Result<(), Box<dyn Error>> {
     let mut lines = read_lines("./inputs/advent2021_p6")?;
     let mut fish: Vec<i32> = lines
         .next()
@@ -62,6 +62,29 @@ fn part2() -> Result<(), Box<dyn Error>> {
         }
     }
     dbg!(fish.iter().map(|f| data[*f as usize]).sum::<i64>());
+
+    Ok(())
+}
+
+fn part2() -> Result<(), Box<dyn Error>> {
+    let mut lines = read_lines("./inputs/advent2021_p6")?;
+    let fish: Vec<usize> = lines
+        .next()
+        .unwrap()?
+        .split(',')
+        .map(|num| num.parse::<usize>().unwrap())
+        .collect();
+
+    let mut buckets = vec![0u128; 9];
+    fish.iter().for_each(|f| buckets[*f] += 1);
+
+    let days = 256;
+    for _ in 0..days {
+        let births = buckets.remove(0);
+        buckets.push(births);
+        buckets[6] += births;
+    }
+    dbg!(buckets.iter().sum::<u128>());
 
     Ok(())
 }
