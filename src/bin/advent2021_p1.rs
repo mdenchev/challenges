@@ -1,45 +1,22 @@
-use std::{collections::VecDeque, error::Error};
+use std::fs;
 
-use challenges::read_lines;
+use anyhow::Result;
 
-#[macro_use]
-extern crate scan_fmt;
-
-fn part1() -> Result<(), Box<dyn Error>> {
-    let mut previous: Option<i32> = None;
-    let mut increases = 0;
-    for line in read_lines("./inputs/advent2021_p1") {
-        let val = Some(scan_fmt!(&line, "{}", i32)?);
-        if previous.is_some() && val > previous {
-            increases += 1;
-        }
-        previous = val;
-    }
-
-    dbg!(increases);
-    Ok(())
+fn part1(nums: &[i32]) -> Result<usize> {
+    Ok(nums.windows(2).filter(|w| w[1] > w[0]).count())
 }
 
-fn part2() -> Result<(), Box<dyn Error>> {
-    let mut vals = VecDeque::<i32>::new();
-    let mut increases = 0;
-    for line in read_lines("./inputs/advent2021_p1") {
-        let new = scan_fmt!(&line, "{}", i32)?;
-        vals.push_back(new);
-        if vals.len() == 4 {
-            if vals.range(..3).sum::<i32>() < vals.range(1..).sum() {
-                increases += 1;
-            }
-            vals.pop_front();
-        }
-    }
-
-    dbg!(increases);
-    Ok(())
+fn part2(nums: &[i32]) -> Result<usize> {
+    Ok(nums.windows(4).filter(|w| w[3] > w[0]).count())
 }
 
-fn main() -> Result<(), Box<dyn Error>> {
-    part1()?;
-    part2()?;
+fn main() -> Result<()> {
+    let nums: Vec<i32> = fs::read_to_string("./inputs/advent2021_p1")?
+        .lines()
+        .map(|s| s.parse().unwrap())
+        .collect();
+
+    println!("part 1: {}", part1(&nums)?);
+    println!("part 2: {}", part2(&nums)?);
     Ok(())
 }

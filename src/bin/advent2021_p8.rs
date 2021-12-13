@@ -1,7 +1,7 @@
 #![feature(drain_filter)]
 use std::error::Error;
 
-use challenges::read_lines;
+use challenges::read_lines_iter;
 
 type Data = Vec<(Vec<String>, Vec<String>)>;
 
@@ -76,7 +76,7 @@ fn part2(data: &Data) -> Result<usize, Box<dyn Error>> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let inp: Data = read_lines("./inputs/advent2021_p8")
+    let inp: Data = read_lines_iter("./inputs/advent2021_p8")
         .into_iter()
         .map(|line| {
             let (i, o) = line.split_once("|").unwrap();

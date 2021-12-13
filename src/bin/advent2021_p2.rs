@@ -1,6 +1,6 @@
 use std::error::Error;
 
-use challenges::read_lines;
+use challenges::read_lines_iter;
 
 #[macro_use]
 extern crate scan_fmt;
@@ -8,7 +8,7 @@ extern crate scan_fmt;
 fn part1() -> Result<(), Box<dyn Error>> {
     let mut horizontal = 0;
     let mut depth = 0;
-    for line in read_lines("./inputs/advent2021_p2") {
+    for line in read_lines_iter("./inputs/advent2021_p2") {
         let (dir, amt) = scan_fmt!(&line, "{} {}", String, i32)?;
         match dir.as_str() {
             "forward" => horizontal += amt,
@@ -26,7 +26,7 @@ fn part2() -> Result<(), Box<dyn Error>> {
     let mut horizontal = 0;
     let mut depth = 0;
     let mut aim = 0;
-    for line in read_lines("./inputs/advent2021_p2") {
+    for line in read_lines_iter("./inputs/advent2021_p2") {
         let (dir, amt) = scan_fmt!(&line, "{} {}", String, i32)?;
         match dir.as_str() {
             "forward" => {

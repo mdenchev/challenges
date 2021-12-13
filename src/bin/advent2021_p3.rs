@@ -1,11 +1,11 @@
 #![feature(drain_filter)]
 use std::error::Error;
 
-use challenges::read_lines;
+use challenges::read_lines_iter;
 
 fn part1() -> Result<(), Box<dyn Error>> {
     let mut bit_grid = Vec::<Vec<i32>>::new();
-    for line in read_lines("./inputs/advent2021_p3") {
+    for line in read_lines_iter("./inputs/advent2021_p3") {
         for (idx, ch) in line.chars().enumerate() {
             if bit_grid.len() <= idx {
                 bit_grid.push(vec![]);
@@ -40,7 +40,7 @@ fn part1() -> Result<(), Box<dyn Error>> {
 
 fn part2() -> Result<(), Box<dyn Error>> {
     let mut reports: Vec<Vec<i32>> = vec![];
-    for line in read_lines("./inputs/advent2021_p3") {
+    for line in read_lines_iter("./inputs/advent2021_p3") {
         reports.push(
             line.chars()
                 .map(|ch| ch.to_digit(10).unwrap() as i32)

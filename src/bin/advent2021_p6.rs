@@ -1,10 +1,10 @@
 #![feature(drain_filter)]
 use std::error::Error;
 
-use challenges::read_lines;
+use challenges::read_lines_iter;
 
 fn part1() -> Result<(), Box<dyn Error>> {
-    let inp = read_lines("./inputs/advent2021_p6")
+    let inp = read_lines_iter("./inputs/advent2021_p6")
         .into_iter()
         .next()
         .unwrap();
@@ -28,7 +28,7 @@ fn part1() -> Result<(), Box<dyn Error>> {
 }
 
 fn part2_original() -> Result<(), Box<dyn Error>> {
-    let inp = read_lines("./inputs/advent2021_p6")
+    let inp = read_lines_iter("./inputs/advent2021_p6")
         .into_iter()
         .next()
         .unwrap();
@@ -69,7 +69,7 @@ fn part2_original() -> Result<(), Box<dyn Error>> {
 }
 
 fn part2() -> Result<(), Box<dyn Error>> {
-    let inp = read_lines("./inputs/advent2021_p6")
+    let inp = read_lines_iter("./inputs/advent2021_p6")
         .into_iter()
         .next()
         .unwrap();

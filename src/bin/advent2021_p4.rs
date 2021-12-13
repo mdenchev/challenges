@@ -1,7 +1,7 @@
 #![feature(drain_filter)]
 use std::error::Error;
 
-use challenges::read_lines;
+use challenges::read_lines_iter;
 
 #[derive(Debug, Default)]
 struct BingoBoard {
@@ -51,7 +51,7 @@ impl BingoBoard {
 }
 
 fn part1() -> Result<(), Box<dyn Error>> {
-    let mut lines = read_lines("./inputs/advent2021_p4").into_iter();
+    let mut lines = read_lines_iter("./inputs/advent2021_p4").into_iter();
     let first_line = lines.next().unwrap();
     let order: Vec<i32> = first_line
         .split(',')
@@ -90,7 +90,7 @@ fn part1() -> Result<(), Box<dyn Error>> {
 }
 
 fn part2() -> Result<(), Box<dyn Error>> {
-    let mut lines = read_lines("./inputs/advent2021_p4").into_iter();
+    let mut lines = read_lines_iter("./inputs/advent2021_p4").into_iter();
     let first_line = lines.next().unwrap();
     let order: Vec<i32> = first_line
         .split(',')

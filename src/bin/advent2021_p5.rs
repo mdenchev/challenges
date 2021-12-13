@@ -1,6 +1,6 @@
 use std::error::Error;
 
-use challenges::read_lines;
+use challenges::read_lines_iter;
 
 #[macro_use]
 extern crate scan_fmt;
@@ -8,7 +8,7 @@ extern crate scan_fmt;
 fn part1() -> Result<(), Box<dyn Error>> {
     let size = 1000;
     let mut grid = vec![0; size * size];
-    for line in read_lines("./inputs/advent2021_p5") {
+    for line in read_lines_iter("./inputs/advent2021_p5") {
         let (x1, y1, x2, y2) = scan_fmt!(&line, "{},{} -> {},{}", usize, usize, usize, usize)?;
         if x1 == x2 {
             let min = y1.min(y2);
@@ -33,7 +33,7 @@ fn part1() -> Result<(), Box<dyn Error>> {
 fn part2() -> Result<(), Box<dyn Error>> {
     let size = 1000;
     let mut grid = vec![0; size * size];
-    for line in read_lines("./inputs/advent2021_p5") {
+    for line in read_lines_iter("./inputs/advent2021_p5") {
         let (x1, y1, x2, y2) = scan_fmt!(&line, "{},{} -> {},{}", usize, usize, usize, usize)?;
         let minx = x1.min(x2);
         let maxx = x1.max(x2);

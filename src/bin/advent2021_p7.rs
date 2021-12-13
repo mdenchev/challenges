@@ -1,7 +1,7 @@
 #![feature(drain_filter)]
 use std::error::Error;
 
-use challenges::read_lines;
+use challenges::read_lines_iter;
 
 fn part1(crabs: Vec<usize>) -> Result<usize, Box<dyn Error>> {
     let min = *crabs.iter().min().unwrap();
@@ -33,7 +33,7 @@ fn part2(crabs: Vec<usize>) -> Result<usize, Box<dyn Error>> {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let inp = read_lines("./inputs/advent2021_p7")
+    let inp = read_lines_iter("./inputs/advent2021_p7")
         .into_iter()
         .next()
         .unwrap();
