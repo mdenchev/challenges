@@ -15,7 +15,7 @@ fn part1(data: &Data) -> Result<usize, Box<dyn Error>> {
 
 fn part2(data: &Data) -> Result<usize, Box<dyn Error>> {
     use std::collections::{HashMap, HashSet};
-    fn to_sorted(s: &String) -> String {
+    fn to_sorted(s: &str) -> String {
         let mut as_vec = s.chars().into_iter().collect::<Vec<char>>();
         as_vec.sort_unstable();
         as_vec.iter().collect()
@@ -64,12 +64,11 @@ fn part2(data: &Data) -> Result<usize, Box<dyn Error>> {
             }
         }
 
-        let mut output = 0;
-        for out in &row.1 {
-            let sorted = to_sorted(out);
-            let num = segments_mapping[&sorted];
-            output = output * 10 + num;
-        }
+        let output = &row
+            .1
+            .iter()
+            .map(|s| to_sorted(s))
+            .fold(0, |acc, x| acc * 10 + segments_mapping[&x]);
         sum += output;
     }
 
