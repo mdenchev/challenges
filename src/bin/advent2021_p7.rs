@@ -6,10 +6,10 @@ use challenges::read_lines;
 fn part1(crabs: Vec<usize>) -> Result<usize, Box<dyn Error>> {
     let min = *crabs.iter().min().unwrap();
     let max = *crabs.iter().max().unwrap();
-    let dist_to = |i: usize| move |c: &usize| (*c as i32 - i as i32).abs();
+    let fuel_to = |i: usize| move |c: &usize| (*c as i32 - i as i32).abs();
     let fuel = (min..=max)
         .into_iter()
-        .map(|i| crabs.iter().map(dist_to(i)).sum::<i32>())
+        .map(|i| crabs.iter().map(fuel_to(i)).sum::<i32>())
         .min()
         .unwrap() as usize;
     Ok(fuel)
@@ -18,7 +18,7 @@ fn part1(crabs: Vec<usize>) -> Result<usize, Box<dyn Error>> {
 fn part2(crabs: Vec<usize>) -> Result<usize, Box<dyn Error>> {
     let min = *crabs.iter().min().unwrap();
     let max = *crabs.iter().max().unwrap();
-    let dist_to = |i: usize| {
+    let fuel_to = |i: usize| {
         move |c: &usize| {
             let n = (*c as i32 - i as i32).abs();
             n * (n + 1) / 2
@@ -26,7 +26,7 @@ fn part2(crabs: Vec<usize>) -> Result<usize, Box<dyn Error>> {
     };
     let fuel = (min..=max)
         .into_iter()
-        .map(|i| crabs.iter().map(dist_to(i)).sum::<i32>())
+        .map(|i| crabs.iter().map(fuel_to(i)).sum::<i32>())
         .min()
         .unwrap() as usize;
     Ok(fuel)
